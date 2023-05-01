@@ -6,7 +6,7 @@ const rowdy = require('rowdy-logger')
 
 // config express app
 const app = express()
-const PORT = process.env.PORT || 8000 
+const PORT = process.env.PORT || 8000
 // for debug logging 
 const rowdyResults = rowdy.begin(app)
 // cross origin resource sharing 
@@ -16,7 +16,7 @@ app.use(express.json())
 
 // GET / -- test index route
 app.get('/', (req, res) => {
-  res.json({ msg: 'hello backend 🤖' })
+    res.json({ msg: 'hello backend 🤖' })
 })
 
 // controllers
@@ -24,7 +24,7 @@ app.use('/api-v1/users', require('./controllers/api-v1/users.js'))
 
 // hey listen
 app.listen(PORT, () => {
-  rowdyResults.print()
-  console.log(`is that port ${PORT} I hear? 🙉`)
+    rowdyResults.print()
+    console.log(`is that port ${PORT} I hear? 🙉`)
 })
 

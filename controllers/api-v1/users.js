@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
 
 		// hash password
 		const password = req.body.password
-		const saltRounds = 12;
+		const saltRounds = 12
 		const hashedPassword = await bcrypt.hash(password, saltRounds)
 
 		// create new user
@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
 		const payload = {
 			name: newUser.name,
 			email: newUser.email,
-			id: newUser.id
+			_id: newUser.id
 		}
 
 		// sign jwt and send back
@@ -81,7 +81,7 @@ router.post('/login', async (req, res) => {
 		const payload = {
 			name: foundUser.name,
 			email: foundUser.email,
-			id: foundUser.id
+			_id: foundUser.id
 		}
 
 		// sign jwt and send back
@@ -97,6 +97,8 @@ router.post('/login', async (req, res) => {
 
 // GET /auth-locked - will redirect if bad jwt token is found
 router.get('/auth-locked', authLockedRoute, (req, res) => {
+	// use res.locals.user here to do authorization stuff
+	console.log('logged in user:', res.locals.user)
 	res.json({ msg: 'welcome to the private route!' })
 })
 

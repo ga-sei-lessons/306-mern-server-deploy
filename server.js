@@ -14,6 +14,11 @@ app.use(cors())
 // request body parsing
 app.use(express.json())
 
+const testMiddleware = (req, res, next) => {
+    console.log("hi, I am a route specific middleware")
+    next()
+}
+
 // GET / -- test index route
 app.get('/', (req, res) => {
     res.json({ msg: 'hello backend 🤖' })
